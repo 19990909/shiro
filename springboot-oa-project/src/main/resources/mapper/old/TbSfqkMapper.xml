@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="springboot.oa.dao.TbSfqkMapper">
+	<resultMap id="BaseResultMap" type="springboot.oa.domain.TbSfqk">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="sqhdm" jdbcType="VARCHAR" property="sqhdm" />
+		<result column="sfmc" jdbcType="VARCHAR" property="sfmc" />
+		<result column="sccbdmj" jdbcType="VARCHAR" property="sccbdmj" />
+		<result column="qqmj" jdbcType="VARCHAR" property="qqmj" />
+		<result column="bzs" jdbcType="VARCHAR" property="bzs" />
+		<result column="wcqqqk" jdbcType="VARCHAR" property="wcqqqk" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, sqhdm, sfmc,sccbdmj,qqmj,bzs,wcqqqk
+	</sql>
+	<select id="selectByExample" parameterType="springboot.oa.domain.TbSfqkExample"
+		resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from tb_sfqk
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_sfqk
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		tb_sfqk
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="springboot.oa.domain.TbSfqkExample">
+		delete from tb_sfqk
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="springboot.oa.domain.TbSfqk">
+		insert into tb_sfqk (id, sqhdm,sfmc,sccbdmj,qqmj,bzs,wcqqqk
+		)
+		values (#{id,jdbcType=INTEGER}, #{sqhdm,jdbcType=VARCHAR},
+		#{sfmc,jdbcType=VARCHAR},#{sccbdmj,jdbcType=VARCHAR},#{qqmj,jdbcType=VARCHAR},
+		#{bzs,jdbcType=VARCHAR},
+		#{wcqqqk,jdbcType=VARCHAR},
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="springboot.oa.domain.TbSfqk">
+		insert into tb_sfqk
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="sqhdm != null">
+				sqhdm,
+			</if>
+			<if test="sfmc != null">
+				sfmc,
+			</if>
+			<if test="sccbdmj != null">
+				sccbdmj,
+			</if>
+			<if test="qqmj != null">
+				qqmj,
+			</if>
+			<if test="bzs != null">
+				bzs,
+			</if>
+			<if test="wcqqqk != null">
+				wcqqqk,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="sqhdm != null">
+				#{sqhdm,jdbcType=VARCHAR},
+			</if>
+			<if test="sfmc != null">
+				#{sfmc,jdbcType=VARCHAR},
+			</if>
+			<if test="sccbdmj != null">
+				#{sccbdmj,jdbcType=VARCHAR},
+			</if>
+			<if test="qqmj != null">
+				#{qqmj,jdbcType=VARCHAR},
+			</if>
+			<if test="bzs != null">
+				#{bzs,jdbcType=VARCHAR},
+			</if>
+			<if test="wcqqqk != null">
+				#{wcqqqk,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="springboot.oa.domain.TbSfqkExample"
+		resultType="java.lang.Long">
+		select count(*) from tb_sfqk
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update tb_sfqk
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.sqhdm != null">
+				sqhdm = #{record.sqhdm,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sfmc != null">
+				sfmc = #{record.sfmc,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sccbdmj != null">
+				sccbdmj = #{record.sccbdmj,jdbcType=VARCHAR},
+			</if>
+			<if test="record.qqmj != null">
+				qqmj = #{record.qqmj,jdbcType=VARCHAR},
+			</if>
+			<if test="record.bzs != null">
+			bzs = #{record.bzs,jdbcType=VARCHAR},
+		    </if>
+			<if test="record.wcqqqk != null">
+				wcqqqk = #{record.wcqqqk,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update tb_sfqk
+		set id = #{record.id,jdbcType=INTEGER},
+		sqhdm =
+		#{record.sqhdm,jdbcType=VARCHAR},
+		sfmc =
+		#{record.sfmc,jdbcType=VARCHAR}
+		sccbdmj =
+		#{record.sccbdmj,jdbcType=VARCHAR}
+		qqmj =
+		#{record.qqmj,jdbcType=VARCHAR}
+		bzs =
+		#{record.bzs,jdbcType=VARCHAR}
+		wcqqqk =
+		#{record.wcqqqk,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="springboot.oa.domain.TbSfqk">
+		update tb_sfqk
+		<set>
+			<if test="sqhdm != null">
+				sqhdm = #{sqhdm,jdbcType=VARCHAR},
+			</if>
+			<if test="sfmc != null">
+				sfmc = #{sfmc,jdbcType=VARCHAR},
+			</if>
+			<if test="sccbdmj != null">
+				sccbdmj = #{sccbdmj,jdbcType=VARCHAR},
+			</if>
+			<if test="qqmj != null">
+				qqmj = #{qqmj,jdbcType=VARCHAR},
+			</if>
+			<if test="bzs != null">
+				bzs = #{bzs,jdbcType=VARCHAR},
+			</if>
+			<if test="wcqqqk != null">
+				wcqqqk = #{wcqqqk,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="springboot.oa.domain.TbSfqk">
+		update tb_sfqk
+		set
+		sqhdm = #{sqhdm,jdbcType=VARCHAR},
+		sfmc = #{sfmc,jdbcType=VARCHAR}
+		sccbdmj = #{sccbdmj,jdbcType=VARCHAR}
+		qqmj = #{qqmj,jdbcType=VARCHAR}
+		bzs = #{bzs,jdbcType=VARCHAR}
+		wcqqqk = #{wcqqqk,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+
+	<select id="selectPage" resultMap="BaseResultMap" parameterType="map">
+		select * from tb_sfqk limit #{rowStart},#{rowEnd}
+	</select>
+
+	<select id="selectPageByName" resultMap="BaseResultMap"
+		parameterType="map">
+		select * from tb_sfqk where sfmc like #{sfmc} limit
+		#{rowStart},#{rowEnd}
+	</select>
+
+	<select id="selectLikeCount" resultType="int">
+		select COUNT(*) from tb_sfqk where sfmc like #{sfmc}
+	</select>
+
+
+
+</mapper>

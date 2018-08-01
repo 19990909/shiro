@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="springboot.oa.dao.TbCbfMapper">
+    <resultMap id="BaseResultMap" type="springboot.oa.domain.TbCbf">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="cbfbm" jdbcType="VARCHAR" property="cbfbm" />
+        <result column="cbfmc" jdbcType="VARCHAR" property="cbfmc" />
+        <result column="cbflx" jdbcType="VARCHAR" property="cbflx" />
+        <result column="cbfzjhm" jdbcType="VARCHAR" property="cbfzjhm" />
+        <result column="lxdh" jdbcType="VARCHAR" property="lxdh" />
+        <result column="jid" jdbcType="INTEGER" property="jid" />
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                    and
+                                    #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem"
+                                             open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria"
+                     separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                    and
+                                    #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem"
+                                             open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        id, cbfbm, cbfmc,cbflx,cbfzjhm,lxdh,jid
+    </sql>
+    <select id="selectByExample" parameterType="springboot.oa.domain.TbCbfExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from tb_cbf
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_cbf
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from
+        tb_cbf
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByExample" parameterType="springboot.oa.domain.TbCbfExample">
+        delete from tb_cbf
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+    <insert id="insert" parameterType="springboot.oa.domain.TbCbf">
+        insert into tb_cbf (id, cbfbm,cbfmc,cbflx,cbfzjhm,lxdh,jid,
+
+        )
+        values (#{id,jdbcType=INTEGER}, #{cbfbm,jdbcType=VARCHAR},
+        #{cbfmc,jdbcType=VARCHAR},#{cbflx,jdbcType=VARCHAR},#{cbfzjhm,jdbcType=VARCHAR},#{lxdh,jdbcType=VARCHAR},#{jid,jdbcType=INTEGER},
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="springboot.oa.domain.TbCbf">
+        insert into tb_cbf
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="cbfbm != null">
+                cbfbm,
+            </if>
+            <if test="cbfmc != null">
+                cbfmc,
+            </if>
+            <if test="cbflx != null">
+                cbflx,
+            </if>
+            <if test="cbfzjhm != null">
+                cbfzjhm,
+            </if>
+            <if test="lxdh != null">
+                lxdh,
+            </if>
+            <if test="jid != null">
+                jid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="cbfbm != null">
+                #{cbfbm,jdbcType=VARCHAR},
+            </if>
+            <if test="cbfmc != null">
+                #{cbfmc,jdbcType=VARCHAR},
+            </if>
+            <if test="cbflx != null">
+                #{cbflx,jdbcType=VARCHAR},
+            </if>
+            <if test="cbfzjhm != null">
+                #{cbfzjhm,jdbcType=VARCHAR},
+            </if>
+            <if test="lxdh != null">
+                #{lxdh,jdbcType=VARCHAR},
+            </if>
+            <if test="jid != null">
+                #{jid,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="springboot.oa.domain.TbCbfExample"
+            resultType="java.lang.Long">
+        select count(*) from tb_cbf
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update tb_cbf
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.cbfbm != null">
+                cbfbm = #{record.cbfbm,jdbcType=VARCHAR},
+            </if>
+            <if test="record.cbfmc != null">
+                cbfmc = #{record.cbfmc,jdbcType=VARCHAR},
+            </if>
+            <if test="record.cbflx != null">
+                cbflx = #{record.cbflx,jdbcType=VARCHAR},
+            </if>
+            <if test="record.cbfzjhm != null">
+            cbfzjhm = #{record.cbfzjhm,jdbcType=VARCHAR},
+        </if>
+            <if test="record.lxdh != null">
+                lxdh = #{record.lxdh,jdbcType=VARCHAR},
+            </if>
+            <if test="record.jid != null">
+                jid = #{record.jid,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update tb_cbf
+        set id = #{record.id,jdbcType=INTEGER},
+        cbfbm =
+        #{record.cbfbm,jdbcType=VARCHAR},
+        cbfmc =
+        #{record.cbfmc,jdbcType=VARCHAR}
+        cbflx =
+        #{record.cbflx,jdbcType=VARCHAR}
+        cbfzjhm =
+        #{record.cbfzjhm,jdbcType=VARCHAR}
+        lxdh =
+        #{record.lxdh,jdbcType=VARCHAR}
+        jid =
+        #{record.jid,jdbcType=INTEGER}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="springboot.oa.domain.TbCbf">
+        update tb_cbf
+        <set>
+            <if test="cbfbm != null">
+                cbfbm = #{cbfbm,jdbcType=VARCHAR},
+            </if>
+            <if test="cbfmc != null">
+                cbfmc = #{cbfmc,jdbcType=VARCHAR},
+            </if>
+            <if test="cbflx != null">
+                cbflx = #{cbflx,jdbcType=VARCHAR},
+            </if>
+            <if test="cbfzjhm != null">
+                cbfzjhm = #{cbfzjhm,jdbcType=VARCHAR},
+            </if>
+            <if test="lxdh != null">
+                lxdh = #{lxdh,jdbcType=VARCHAR},
+            </if>
+            <if test="jid != null">
+                jid = #{jid,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="springboot.oa.domain.TbCbf">
+        update tb_cbf
+        set
+        cbfbm = #{cbfbm,jdbcType=VARCHAR},
+        cbfmc = #{cbfmc,jdbcType=VARCHAR},
+        cbflx = #{cbflx,jdbcType=VARCHAR},
+        cbfzjhm = #{cbfzjhm,jdbcType=VARCHAR},
+         lxdh = #{lxdh,jdbcType=VARCHAR},
+         jid = #{jid,jdbcType=VARCHAR},
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+
+    <select id="selectPage" resultMap="BaseResultMap" parameterType="map">
+        select * from tb_cbf limit #{rowStart},#{rowEnd}
+    </select>
+
+    <select id="selectPageByName" resultMap="BaseResultMap"
+            parameterType="map">
+        select * from tb_cbf where cbfmc like #{cbfmc} limit
+        #{rowStart},#{rowEnd}
+    </select>
+
+    <select id="selectLikeCount" resultType="int">
+        select COUNT(*) from tb_cbf where cbfmc like #{cbfmc}
+    </select>
+
+
+
+</mapper>

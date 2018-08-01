@@ -1,0 +1,17 @@
+$imgUrl: "../images/";
+//浏览器前缀混合宏
+@mixin prefix-key($key, $val) {
+  #{$key}: $val;
+  -webkit-#{$key}: $val;
+  -moz-#{$key}: $val;
+  -ms-#{$key}: $val;
+  -o-#{$key}: $val;
+}
+
+@mixin prefix-val($key,$val) {
+  #{$key}: $val;
+  #{$key}: -webkit-#{$val};
+  #{$key}: -moz-#{$val};
+  #{$key}: -ms-#{$val};
+  #{$key}: -o-#{$val};
+}

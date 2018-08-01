@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="springboot.oa.dao.sjhj.SysOaSjhjMapper" >
+  <resultMap id="BaseResultMap" type="springboot.oa.domain.sjhj.SysOaSjhj" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="proName" property="proname" jdbcType="VARCHAR" />
+    <result column="province_code" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="cityName" property="cityname" jdbcType="VARCHAR" />
+    <result column="city_code" property="cityCode" jdbcType="VARCHAR" />
+    <result column="hjrxm" property="hjrxm" jdbcType="VARCHAR" />
+    <result column="hjrxm_id" property="hjrxmId" jdbcType="VARCHAR" />
+    <result column="hjjzdm" property="hjjzdm" jdbcType="VARCHAR" />
+    <result column="hjjzdm_id" property="hjjzdmId" jdbcType="VARCHAR" />
+    <result column="bz" property="bz" jdbcType="VARCHAR" />
+    <result column="hjsj" property="hjsj" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <if test="fields == null" >
+      ID, proName, province_code, cityName, city_code, hjrxm, hjrxm_id, hjjzdm, hjjzdm_id, 
+      bz, hjsj
+    </if>
+    <if test="fields != null" >
+      ${fields}
+    </if>
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="springboot.oa.domain.sjhj.SysOaSjhjExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_oa_sjhj
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    ID,proName,province_code,cityName,city_code,hjrxm,hjrxm_id,hjjzdm,hjjzdm_id,bz,hjsj
+    from sys_oa_sjhj
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_oa_sjhj
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="springboot.oa.domain.sjhj.SysOaSjhjExample" >
+    delete from sys_oa_sjhj
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="springboot.oa.domain.sjhj.SysOaSjhj" >
+    insert into sys_oa_sjhj (ID, proName, province_code, 
+      cityName, city_code, hjrxm, 
+      hjrxm_id, hjjzdm, hjjzdm_id, 
+      bz, hjsj)
+    values (#{id,jdbcType=INTEGER}, #{proname,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, 
+      #{cityname,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{hjrxm,jdbcType=VARCHAR}, 
+      #{hjrxmId,jdbcType=VARCHAR}, #{hjjzdm,jdbcType=VARCHAR}, #{hjjzdmId,jdbcType=VARCHAR}, 
+      #{bz,jdbcType=VARCHAR}, #{hjsj,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="springboot.oa.domain.sjhj.SysOaSjhj" >
+    insert into sys_oa_sjhj
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="proname != null" >
+        proName,
+      </if>
+      <if test="provinceCode != null" >
+        province_code,
+      </if>
+      <if test="cityname != null" >
+        cityName,
+      </if>
+      <if test="cityCode != null" >
+        city_code,
+      </if>
+      <if test="hjrxm != null" >
+        hjrxm,
+      </if>
+      <if test="hjrxmId != null" >
+        hjrxm_id,
+      </if>
+      <if test="hjjzdm != null" >
+        hjjzdm,
+      </if>
+      <if test="hjjzdmId != null" >
+        hjjzdm_id,
+      </if>
+      <if test="bz != null" >
+        bz,
+      </if>
+      <if test="hjsj != null" >
+        hjsj,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="proname != null" >
+        #{proname,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityname != null" >
+        #{cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hjrxm != null" >
+        #{hjrxm,jdbcType=VARCHAR},
+      </if>
+      <if test="hjrxmId != null" >
+        #{hjrxmId,jdbcType=VARCHAR},
+      </if>
+      <if test="hjjzdm != null" >
+        #{hjjzdm,jdbcType=VARCHAR},
+      </if>
+      <if test="hjjzdmId != null" >
+        #{hjjzdmId,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null" >
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="hjsj != null" >
+        #{hjsj,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="springboot.oa.domain.sjhj.SysOaSjhjExample" resultType="java.lang.Integer" >
+    select count(*) from sys_oa_sjhj
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sys_oa_sjhj
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.proname != null" >
+        proName = #{record.proname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provinceCode != null" >
+        province_code = #{record.provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityname != null" >
+        cityName = #{record.cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityCode != null" >
+        city_code = #{record.cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hjrxm != null" >
+        hjrxm = #{record.hjrxm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hjrxmId != null" >
+        hjrxm_id = #{record.hjrxmId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hjjzdm != null" >
+        hjjzdm = #{record.hjjzdm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hjjzdmId != null" >
+        hjjzdm_id = #{record.hjjzdmId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bz != null" >
+        bz = #{record.bz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hjsj != null" >
+        hjsj = #{record.hjsj,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sys_oa_sjhj
+    set ID = #{record.id,jdbcType=INTEGER},
+      proName = #{record.proname,jdbcType=VARCHAR},
+      province_code = #{record.provinceCode,jdbcType=VARCHAR},
+      cityName = #{record.cityname,jdbcType=VARCHAR},
+      city_code = #{record.cityCode,jdbcType=VARCHAR},
+      hjrxm = #{record.hjrxm,jdbcType=VARCHAR},
+      hjrxm_id = #{record.hjrxmId,jdbcType=VARCHAR},
+      hjjzdm = #{record.hjjzdm,jdbcType=VARCHAR},
+      hjjzdm_id = #{record.hjjzdmId,jdbcType=VARCHAR},
+      bz = #{record.bz,jdbcType=VARCHAR},
+      hjsj = #{record.hjsj,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="springboot.oa.domain.sjhj.SysOaSjhj" >
+    update sys_oa_sjhj
+    <set >
+      <if test="proname != null" >
+        proName = #{proname,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        province_code = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityname != null" >
+        cityName = #{cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        city_code = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hjrxm != null" >
+        hjrxm = #{hjrxm,jdbcType=VARCHAR},
+      </if>
+      <if test="hjrxmId != null" >
+        hjrxm_id = #{hjrxmId,jdbcType=VARCHAR},
+      </if>
+      <if test="hjjzdm != null" >
+        hjjzdm = #{hjjzdm,jdbcType=VARCHAR},
+      </if>
+      <if test="hjjzdmId != null" >
+        hjjzdm_id = #{hjjzdmId,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null" >
+        bz = #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="hjsj != null" >
+        hjsj = #{hjsj,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="springboot.oa.domain.sjhj.SysOaSjhj" >
+    update sys_oa_sjhj
+    set proName = #{proname,jdbcType=VARCHAR},
+      province_code = #{provinceCode,jdbcType=VARCHAR},
+      cityName = #{cityname,jdbcType=VARCHAR},
+      city_code = #{cityCode,jdbcType=VARCHAR},
+      hjrxm = #{hjrxm,jdbcType=VARCHAR},
+      hjrxm_id = #{hjrxmId,jdbcType=VARCHAR},
+      hjjzdm = #{hjjzdm,jdbcType=VARCHAR},
+      hjjzdm_id = #{hjjzdmId,jdbcType=VARCHAR},
+      bz = #{bz,jdbcType=VARCHAR},
+      hjsj = #{hjsj,jdbcType=DATE}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

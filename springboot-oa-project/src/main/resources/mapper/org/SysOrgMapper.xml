@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="springboot.oa.dao.org.SysOrgMapper" >
+  <resultMap id="BaseResultMap" type="springboot.oa.domain.org.SysOrg" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ORG_NAME" property="orgName" jdbcType="VARCHAR" />
+    <result column="ORG_TEL" property="orgTel" jdbcType="VARCHAR" />
+    <result column="ORG_ADDRESS" property="orgAddress" jdbcType="VARCHAR" />
+    <result column="ORG_CODE" property="orgCode" jdbcType="VARCHAR" />
+    <result column="ORG_STATUS" property="orgStatus" jdbcType="VARCHAR" />
+    <result column="ORG_BZ" property="orgBz" jdbcType="VARCHAR" />
+    <result column="ORG_CREATEUSER" property="orgCreateuser" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="DATE" />
+    <result column="ORG_REGION_ID" property="orgRegionId" jdbcType="VARCHAR" />
+    <result column="PID" property="pid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <if test="fields == null" >
+      ID, ORG_NAME, ORG_TEL, ORG_ADDRESS, ORG_CODE, ORG_STATUS, ORG_BZ, ORG_CREATEUSER, 
+      CREATETIME, ORG_REGION_ID, PID
+    </if>
+    <if test="fields != null" >
+      ${fields}
+    </if>
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="springboot.oa.domain.org.SysOrgExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_org
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    ID,ORG_NAME,ORG_TEL,ORG_ADDRESS,ORG_CODE,ORG_STATUS,ORG_BZ,ORG_CREATEUSER,CREATETIME,ORG_REGION_ID,PID
+    from sys_org
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_org
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="springboot.oa.domain.org.SysOrgExample" >
+    delete from sys_org
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="springboot.oa.domain.org.SysOrg" >
+    insert into sys_org (ID, ORG_NAME, ORG_TEL, 
+      ORG_ADDRESS, ORG_CODE, ORG_STATUS, 
+      ORG_BZ, ORG_CREATEUSER, CREATETIME, 
+      ORG_REGION_ID, PID)
+    values (#{id,jdbcType=VARCHAR}, #{orgName,jdbcType=VARCHAR}, #{orgTel,jdbcType=VARCHAR}, 
+      #{orgAddress,jdbcType=VARCHAR}, #{orgCode,jdbcType=VARCHAR}, #{orgStatus,jdbcType=VARCHAR}, 
+      #{orgBz,jdbcType=VARCHAR}, #{orgCreateuser,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}, 
+      #{orgRegionId,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="springboot.oa.domain.org.SysOrg" >
+    insert into sys_org
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orgName != null" >
+        ORG_NAME,
+      </if>
+      <if test="orgTel != null" >
+        ORG_TEL,
+      </if>
+      <if test="orgAddress != null" >
+        ORG_ADDRESS,
+      </if>
+      <if test="orgCode != null" >
+        ORG_CODE,
+      </if>
+      <if test="orgStatus != null" >
+        ORG_STATUS,
+      </if>
+      <if test="orgBz != null" >
+        ORG_BZ,
+      </if>
+      <if test="orgCreateuser != null" >
+        ORG_CREATEUSER,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+      <if test="orgRegionId != null" >
+        ORG_REGION_ID,
+      </if>
+      <if test="pid != null" >
+        PID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null" >
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgTel != null" >
+        #{orgTel,jdbcType=VARCHAR},
+      </if>
+      <if test="orgAddress != null" >
+        #{orgAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null" >
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgStatus != null" >
+        #{orgStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orgBz != null" >
+        #{orgBz,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCreateuser != null" >
+        #{orgCreateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="orgRegionId != null" >
+        #{orgRegionId,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="springboot.oa.domain.org.SysOrgExample" resultType="java.lang.Integer" >
+    select count(*) from sys_org
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sys_org
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgName != null" >
+        ORG_NAME = #{record.orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgTel != null" >
+        ORG_TEL = #{record.orgTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgAddress != null" >
+        ORG_ADDRESS = #{record.orgAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgCode != null" >
+        ORG_CODE = #{record.orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgStatus != null" >
+        ORG_STATUS = #{record.orgStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgBz != null" >
+        ORG_BZ = #{record.orgBz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgCreateuser != null" >
+        ORG_CREATEUSER = #{record.orgCreateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        CREATETIME = #{record.createtime,jdbcType=DATE},
+      </if>
+      <if test="record.orgRegionId != null" >
+        ORG_REGION_ID = #{record.orgRegionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pid != null" >
+        PID = #{record.pid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sys_org
+    set ID = #{record.id,jdbcType=VARCHAR},
+      ORG_NAME = #{record.orgName,jdbcType=VARCHAR},
+      ORG_TEL = #{record.orgTel,jdbcType=VARCHAR},
+      ORG_ADDRESS = #{record.orgAddress,jdbcType=VARCHAR},
+      ORG_CODE = #{record.orgCode,jdbcType=VARCHAR},
+      ORG_STATUS = #{record.orgStatus,jdbcType=VARCHAR},
+      ORG_BZ = #{record.orgBz,jdbcType=VARCHAR},
+      ORG_CREATEUSER = #{record.orgCreateuser,jdbcType=VARCHAR},
+      CREATETIME = #{record.createtime,jdbcType=DATE},
+      ORG_REGION_ID = #{record.orgRegionId,jdbcType=VARCHAR},
+      PID = #{record.pid,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="springboot.oa.domain.org.SysOrg" >
+    update sys_org
+    <set >
+      <if test="orgName != null" >
+        ORG_NAME = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgTel != null" >
+        ORG_TEL = #{orgTel,jdbcType=VARCHAR},
+      </if>
+      <if test="orgAddress != null" >
+        ORG_ADDRESS = #{orgAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCode != null" >
+        ORG_CODE = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgStatus != null" >
+        ORG_STATUS = #{orgStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orgBz != null" >
+        ORG_BZ = #{orgBz,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCreateuser != null" >
+        ORG_CREATEUSER = #{orgCreateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="orgRegionId != null" >
+        ORG_REGION_ID = #{orgRegionId,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        PID = #{pid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="springboot.oa.domain.org.SysOrg" >
+    update sys_org
+    set ORG_NAME = #{orgName,jdbcType=VARCHAR},
+      ORG_TEL = #{orgTel,jdbcType=VARCHAR},
+      ORG_ADDRESS = #{orgAddress,jdbcType=VARCHAR},
+      ORG_CODE = #{orgCode,jdbcType=VARCHAR},
+      ORG_STATUS = #{orgStatus,jdbcType=VARCHAR},
+      ORG_BZ = #{orgBz,jdbcType=VARCHAR},
+      ORG_CREATEUSER = #{orgCreateuser,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=DATE},
+      ORG_REGION_ID = #{orgRegionId,jdbcType=VARCHAR},
+      PID = #{pid,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectOrgByUser" parameterType="springboot.oa.domain.user.SysUser" resultMap="BaseResultMap">
+    select o.* from sys_org o,sys_org_user_r r,sys_user u where o.ID=r.ORG_ID and r.USER_ID = u.id
+    <if test="userName != null and userName != ''">
+      and u.USER_NAME=#{userName}
+    </if>
+    <if test="status != null and status != ''">
+      and o.ORG_STATUS = #{status}
+    </if>
+    order by org_region_id desc
+  </select>
+
+</mapper>

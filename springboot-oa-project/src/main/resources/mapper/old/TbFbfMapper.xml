@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="springboot.oa.dao.TbFbfMapper">
+	<resultMap id="BaseResultMap" type="springboot.oa.domain.TbFbf">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="fbfmc" jdbcType="VARCHAR" property="fbfmc" />
+		<result column="fbfzjhm" jdbcType="VARCHAR" property="fbfzjhm" />
+		<result column="fbflxdh" jdbcType="VARCHAR" property="fbflxdh" />
+		<result column="fbfdz" jdbcType="VARCHAR" property="fbfdz" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, fbfmc, fbfzjhm,fbflxdh,fbfdz
+	</sql>
+	<select id="selectByExample" parameterType="springboot.oa.domain.TbFbfExample"
+		resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from tb_fbf
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_fbf
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		tb_fbf
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="springboot.oa.domain.TbFbfExample">
+		delete from tb_fbf
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="springboot.oa.domain.TbFbf">
+		insert into tb_fbf (id, fbfmc,fbfzjhm,fbflxdh,
+		fbfdz
+		)
+		values (#{id,jdbcType=INTEGER}, #{fbfmc,jdbcType=VARCHAR},
+		#{fbfzjhm,jdbcType=VARCHAR},#{fbflxdh,jdbcType=VARCHAR},#{fbfdz,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="springboot.oa.domain.TbFbf">
+		insert into tb_fbf
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="fbfmc != null">
+				fbfmc,
+			</if>
+			<if test="fbfzjhm != null">
+				fbfzjhm,
+			</if>
+			<if test="fbflxdh != null">
+				fbflxdh,
+			</if>
+			<if test="fbfdz != null">
+				fbfdz,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="fbfmc != null">
+				#{fbfmc,jdbcType=VARCHAR},
+			</if>
+			<if test="fbfzjhm != null">
+				#{fbfzjhm,jdbcType=VARCHAR},
+			</if>
+			<if test="fbflxdh != null">
+				#{fbflxdh,jdbcType=VARCHAR},
+			</if>
+			<if test="fbfdz != null">
+				#{fbfdz,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="springboot.oa.domain.TbFbfExample"
+		resultType="java.lang.Long">
+		select count(*) from tb_fbf
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update tb_fbf
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.fbfmc != null">
+				fbfmc = #{record.fbfmc,jdbcType=VARCHAR},
+			</if>
+			<if test="record.fbfzjhm != null">
+				fbfzjhm = #{record.fbfzjhm,jdbcType=VARCHAR},
+			</if>
+			<if test="record.fbflxdh != null">
+				fbflxdh = #{record.fbflxdh,jdbcType=VARCHAR},
+			</if>
+			<if test="record.fbfdz != null">
+				fbfdz = #{record.fbfdz,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update tb_fbf
+		set id = #{record.id,jdbcType=INTEGER},
+		fbfmc =
+		#{record.fbfmc,jdbcType=VARCHAR},
+		fbfzjhm =
+		#{record.fbfzjhm,jdbcType=VARCHAR}
+		fbflxdh =
+		#{record.fbflxdh,jdbcType=VARCHAR}
+		fbfdz =
+		#{record.fbfdz,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="springboot.oa.domain.TbFbf">
+		update tb_fbf
+		<set>
+			<if test="fbfmc != null">
+				fbfmc = #{fbfmc,jdbcType=VARCHAR},
+			</if>
+			<if test="fbfzjhm != null">
+				fbfzjhm = #{fbfzjhm,jdbcType=VARCHAR},
+			</if>
+			<if test="fbflxdh != null">
+				fbflxdh = #{fbflxdh,jdbcType=VARCHAR},
+			</if>
+			<if test="fbfdz != null">
+				fbfdz = #{fbfdz,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="springboot.oa.domain.TbFbf">
+		update tb_fbf
+		set
+		fbfmc = #{fbfmc,jdbcType=VARCHAR},
+		fbfzjhm = #{fbfzjhm,jdbcType=VARCHAR}
+		fbflxdh = #{fbflxdh,jdbcType=VARCHAR}
+		fbfdz = #{fbfdz,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+
+	<select id="selectPage" resultMap="BaseResultMap" parameterType="map">
+		select * from tb_fbf limit #{rowStart},#{rowEnd}
+	</select>
+
+	<select id="selectPageByName" resultMap="BaseResultMap"
+		parameterType="map">
+		select * from tb_fbf where fbfmc like #{fbfmc} limit
+		#{rowStart},#{rowEnd}
+	</select>
+
+	<select id="selectLikeCount" resultType="int">
+		select COUNT(*) from tb_fbf where fbfmc like #{fbfmc}
+	</select>
+
+
+
+</mapper>

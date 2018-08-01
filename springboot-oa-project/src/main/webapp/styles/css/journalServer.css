@@ -1,0 +1,47 @@
+.list_page .panel_mar {
+    padding: 10px 0;
+}
+.list_page .btn-query {
+    outline: 0;
+    border: 1px solid #b6b6b6;
+    border-radius: 3px;
+    height: 34px;
+    width: 500px;
+    margin-bottom: 20px;
+}
+.list_page .panel-heading {
+    font-size: 16px;
+}
+
+.list_page .btn-start {
+    margin: 0 5px;
+}
+.list_page .colorRed {
+    color: #d9534f;
+}
+.list_page .colorGreen {
+    color: #5cb85c;
+}
+.list_page .widthW {
+    width: 55px;
+}
+.list_page .heightHidden {
+    height: 440px;
+    overflow: hidden;
+}
+
+.borderDashede {
+    border-left: 1px dashed #999;
+}
+
+#leftTable {
+    width: 100%;
+}
+
+#main_table tr, #main_table th {
+    text-align: center;
+}
+.point{
+    cursor: pointer;
+}
+

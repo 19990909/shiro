@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="springboot.oa.dao.TbJzMapper">
+	<resultMap id="BaseResultMap" type="springboot.oa.domain.TbJz">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="jzbm" jdbcType="VARCHAR" property="jzbm" />
+		<result column="jzlx" jdbcType="VARCHAR" property="jzlx" />
+
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, jzbm, jzlx
+	</sql>
+	<select id="selectByExample" parameterType="springboot.oa.domain.TbJzExample"
+		resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from tb_jz
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_jz
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		tb_jz
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="springboot.oa.domain.TbJzExample">
+		delete from tb_jz
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="springboot.oa.domain.TbJz">
+		insert into tb_jz (id, jzbm,jzlx
+		)
+		values (#{id,jdbcType=INTEGER}, #{jzbm,jdbcType=VARCHAR},
+		#{jzlx,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="springboot.oa.domain.TbJz">
+		insert into tb_jz
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="jzbm != null">
+				jzbm,
+			</if>
+			<if test="jzlx != null">
+				jzlx,
+			</if>
+
+
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="jzbm != null">
+				#{jzbm,jdbcType=VARCHAR},
+			</if>
+			<if test="jzlx != null">
+				#{jzlx,jdbcType=VARCHAR},
+			</if>
+
+
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="springboot.oa.domain.TbJzExample"
+		resultType="java.lang.Long">
+		select count(*) from tb_jz
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update tb_jz
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.jzbm != null">
+				jzbm = #{record.jzbm,jdbcType=VARCHAR},
+			</if>
+			<if test="record.jzlx != null">
+				jzlx = #{record.jzlx,jdbcType=VARCHAR},
+			</if>
+
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update tb_jz
+		set id = #{record.id,jdbcType=INTEGER},
+		jzbm =
+		#{record.jzbm,jdbcType=VARCHAR},
+		jzlx =
+		#{record.jzlx,jdbcType=VARCHAR}
+
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="springboot.oa.domain.TbJz">
+		update tb_jz
+		<set>
+			<if test="jzbm != null">
+				jzbm = #{jzbm,jdbcType=VARCHAR},
+			</if>
+			<if test="jzlx != null">
+				jzlx = #{jzlx,jdbcType=VARCHAR},
+			</if>
+
+
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="springboot.oa.domain.TbJz">
+		update tb_jz
+		set
+		jzbm = #{jzbm,jdbcType=VARCHAR},
+		jzlx = #{jzlx,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+
+	<select id="selectPage" resultMap="BaseResultMap" parameterType="map">
+		select * from tb_jz limit #{rowStart},#{rowEnd}
+	</select>
+
+	<select id="selectPageByName" resultMap="BaseResultMap"
+		parameterType="map">
+		select * from tb_jz where jzlx like #{jzlx} limit
+		#{rowStart},#{rowEnd}
+	</select>
+
+	<select id="selectLikeCount" resultType="int">
+		select COUNT(*) from tb_jz where jzlx like #{jzlx}
+	</select>
+
+
+
+</mapper>

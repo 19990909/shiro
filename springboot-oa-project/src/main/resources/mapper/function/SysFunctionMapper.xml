@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="springboot.oa.dao.function.SysFunctionMapper" >
+  <resultMap id="BaseResultMap" type="springboot.oa.domain.function.SysFunction" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="FUNC_URL" property="funcUrl" jdbcType="VARCHAR" />
+    <result column="FUNC_DESC" property="funcDesc" jdbcType="VARCHAR" />
+    <result column="FUNC_TYPE" property="funcType" jdbcType="VARCHAR" />
+    <result column="CREATETIME" property="createtime" jdbcType="DATE" />
+    <result column="PID" property="pid" jdbcType="VARCHAR" />
+    <result column="IS_PARENT" property="isParent" jdbcType="VARCHAR" />
+    <result column="OPEN" property="open" jdbcType="VARCHAR" />
+    <result column="CLASSFIELD" property="classfield" jdbcType="VARCHAR" />
+    <result column="SITE_ID" property="siteId" jdbcType="VARCHAR" />
+    <result column="isleaf" property="isleaf" jdbcType="VARCHAR" />
+    <result column="PID_NAME" property="pidName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <if test="fields == null" >
+      ID, NAME, FUNC_URL, FUNC_DESC, FUNC_TYPE, CREATETIME, PID, IS_PARENT, OPEN, CLASSFIELD, 
+      SITE_ID, isleaf,PID_NAME
+    </if>
+    <if test="fields != null" >
+      ${fields}
+    </if>
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="springboot.oa.domain.function.SysFunctionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_function
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    ID,NAME,FUNC_URL,FUNC_DESC,FUNC_TYPE,CREATETIME,PID,IS_PARENT,OPEN,CLASSFIELD,SITE_ID,isleaf,PID_NAME
+    from sys_function
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_function
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="springboot.oa.domain.function.SysFunctionExample" >
+    delete from sys_function
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="springboot.oa.domain.function.SysFunction" >
+    insert into sys_function (ID, NAME, FUNC_URL, 
+      FUNC_DESC, FUNC_TYPE, CREATETIME, 
+      PID, IS_PARENT, OPEN, 
+      CLASSFIELD, SITE_ID, isleaf,PID_NAME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{funcUrl,jdbcType=VARCHAR}, 
+      #{funcDesc,jdbcType=VARCHAR}, #{funcType,jdbcType=VARCHAR}, #{createtime,jdbcType=DATE}, 
+      #{pid,jdbcType=VARCHAR}, #{isParent,jdbcType=VARCHAR}, #{open,jdbcType=VARCHAR}, 
+      #{classfield,jdbcType=VARCHAR}, #{siteId,jdbcType=VARCHAR}, #{isleaf,jdbcType=VARCHAR}, #{pidName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="springboot.oa.domain.function.SysFunction" >
+    insert into sys_function
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="funcUrl != null" >
+        FUNC_URL,
+      </if>
+      <if test="funcDesc != null" >
+        FUNC_DESC,
+      </if>
+      <if test="funcType != null" >
+        FUNC_TYPE,
+      </if>
+      <if test="createtime != null" >
+        CREATETIME,
+      </if>
+      <if test="pid != null" >
+        PID,
+      </if>
+      <if test="isParent != null" >
+        IS_PARENT,
+      </if>
+      <if test="open != null" >
+        OPEN,
+      </if>
+      <if test="classfield != null" >
+        CLASSFIELD,
+      </if>
+      <if test="siteId != null" >
+        SITE_ID,
+      </if>
+      <if test="isleaf != null" >
+        isleaf,
+      </if>
+      <if test="pidName != null" >
+        PID_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="funcUrl != null" >
+        #{funcUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="funcDesc != null" >
+        #{funcDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="funcType != null" >
+        #{funcType,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="isParent != null" >
+        #{isParent,jdbcType=VARCHAR},
+      </if>
+      <if test="open != null" >
+        #{open,jdbcType=VARCHAR},
+      </if>
+      <if test="classfield != null" >
+        #{classfield,jdbcType=VARCHAR},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=VARCHAR},
+      </if>
+      <if test="isleaf != null" >
+        #{isleaf,jdbcType=VARCHAR},
+      </if>
+      <if test="pidName != null" >
+        #{pidName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="springboot.oa.domain.function.SysFunctionExample" resultType="java.lang.Integer" >
+    select count(*) from sys_function
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sys_function
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.funcUrl != null" >
+        FUNC_URL = #{record.funcUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.funcDesc != null" >
+        FUNC_DESC = #{record.funcDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.funcType != null" >
+        FUNC_TYPE = #{record.funcType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        CREATETIME = #{record.createtime,jdbcType=DATE},
+      </if>
+      <if test="record.pid != null" >
+        PID = #{record.pid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isParent != null" >
+        IS_PARENT = #{record.isParent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.open != null" >
+        OPEN = #{record.open,jdbcType=VARCHAR},
+      </if>
+      <if test="record.classfield != null" >
+        CLASSFIELD = #{record.classfield,jdbcType=VARCHAR},
+      </if>
+      <if test="record.siteId != null" >
+        SITE_ID = #{record.siteId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isleaf != null" >
+        isleaf = #{record.isleaf,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pidName != null" >
+        PID_NAME = #{record.pidName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sys_function
+    set ID = #{record.id,jdbcType=VARCHAR},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      FUNC_URL = #{record.funcUrl,jdbcType=VARCHAR},
+      FUNC_DESC = #{record.funcDesc,jdbcType=VARCHAR},
+      FUNC_TYPE = #{record.funcType,jdbcType=VARCHAR},
+      CREATETIME = #{record.createtime,jdbcType=DATE},
+      PID = #{record.pid,jdbcType=VARCHAR},
+      IS_PARENT = #{record.isParent,jdbcType=VARCHAR},
+      OPEN = #{record.open,jdbcType=VARCHAR},
+      CLASSFIELD = #{record.classfield,jdbcType=VARCHAR},
+      SITE_ID = #{record.siteId,jdbcType=VARCHAR},
+      isleaf = #{record.isleaf,jdbcType=VARCHAR},
+      PID_NAME = #{record.pidName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="springboot.oa.domain.function.SysFunction" >
+    update sys_function
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="funcUrl != null" >
+        FUNC_URL = #{funcUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="funcDesc != null" >
+        FUNC_DESC = #{funcDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="funcType != null" >
+        FUNC_TYPE = #{funcType,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        CREATETIME = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="pid != null" >
+        PID = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="isParent != null" >
+        IS_PARENT = #{isParent,jdbcType=VARCHAR},
+      </if>
+      <if test="open != null" >
+        OPEN = #{open,jdbcType=VARCHAR},
+      </if>
+      <if test="classfield != null" >
+        CLASSFIELD = #{classfield,jdbcType=VARCHAR},
+      </if>
+      <if test="siteId != null" >
+        SITE_ID = #{siteId,jdbcType=VARCHAR},
+      </if>
+      <if test="isleaf != null" >
+        isleaf = #{isleaf,jdbcType=VARCHAR},
+      </if>
+      <if test="pidName != null" >
+        PID_NAME = #{pidName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="springboot.oa.domain.function.SysFunction" >
+    update sys_function
+    set NAME = #{name,jdbcType=VARCHAR},
+      FUNC_URL = #{funcUrl,jdbcType=VARCHAR},
+      FUNC_DESC = #{funcDesc,jdbcType=VARCHAR},
+      FUNC_TYPE = #{funcType,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=DATE},
+      PID = #{pid,jdbcType=VARCHAR},
+      IS_PARENT = #{isParent,jdbcType=VARCHAR},
+      OPEN = #{open,jdbcType=VARCHAR},
+      CLASSFIELD = #{classfield,jdbcType=VARCHAR},
+      SITE_ID = #{siteId,jdbcType=VARCHAR},
+      isleaf = #{isleaf,jdbcType=VARCHAR},
+      PID_NAME = #{pidName,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectSysFuncByArgs" resultMap="BaseResultMap" parameterType="java.util.Map">
+    SELECT f.* FROM SYS_USER u,SYS_USER_ROLE_R ur,SYS_ROLE r,SYS_ROLE_FUNC_R rf,SYS_FUNCTION f
+    WHERE u.ID = ur.USER_ID AND ur.ROLE_ID = r.ID AND r.ID = rf.ROLE_ID AND rf.FUNC_ID = f.ID
+    <if test="username != null and username != ''">
+      AND u.USER_NAME =#{username}
+    </if>
+    <if test="status != null and status != ''">
+      AND u.STATUS =#{status}
+    </if>
+    <if test="siteId != null and siteId != ''">
+      AND r.SITE_ID =#{siteId}
+    </if>
+    <if test="funcType != null and funcType != ''">
+      AND f.FUNC_TYPE =#{funcType}
+    </if>
+    ORDER BY f.FUNC_TYPE,f.FUNC_DESC
+  </select>
+
+  <select id="selectIdFromPidList" resultType="java.util.Map" parameterType="springboot.oa.domain.function.SysFunction">
+    SELECT DISTINCT ID FROM SYS_FUNCTION f
+
+    <if test="idList != null ">
+       where pid in
+        <foreach collection="idList" item="item" index="index" open="(" separator="," close=")" >
+          #{item}
+        </foreach>
+    </if>
+    ORDER BY FUNC_DESC
+  </select>
+
+    <select id="selectIdAndNameList" resultType="java.util.Map" >
+        SELECT DISTINCT ID,NAME FROM SYS_FUNCTION
+    </select>
+</mapper>

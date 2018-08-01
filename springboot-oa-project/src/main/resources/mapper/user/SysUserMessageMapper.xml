@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="springboot.oa.dao.user.SysUserMessageMapper" >
+  <resultMap id="BaseResultMap" type="springboot.oa.domain.user.SysUserMessage" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="SJR" property="sjr" jdbcType="VARCHAR" />
+    <result column="ZT" property="zt" jdbcType="VARCHAR" />
+    <result column="ZW" property="zw" jdbcType="VARCHAR" />
+    <result column="UPLOADPATH" property="uploadpath" jdbcType="VARCHAR" />
+    <result column="FJR" property="fjr" jdbcType="VARCHAR" />
+    <result column="XXLB" property="xxlb" jdbcType="VARCHAR" />
+    <result column="FSZT" property="fszt" jdbcType="VARCHAR" />
+    <result column="DQZT" property="dqzt" jdbcType="VARCHAR" />
+    <result column="BY3" property="by3" jdbcType="VARCHAR" />
+    <result column="BY4" property="by4" jdbcType="VARCHAR" />
+    <result column="BY5" property="by5" jdbcType="VARCHAR" />
+    <result column="BY6" property="by6" jdbcType="VARCHAR" />
+    <result column="BY7" property="by7" jdbcType="VARCHAR" />
+    <result column="FSSJ" property="fssj" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <if test="fields == null" >
+      ID, SJR, ZT, ZW, UPLOADPATH, FJR, XXLB, FSZT, DQZT, BY3, BY4, BY5, BY6, BY7, FSSJ
+    </if>
+    <if test="fields != null" >
+      ${fields}
+    </if>
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="springboot.oa.domain.user.SysUserMessageExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_user_message
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    ID,SJR,ZT,ZW,UPLOADPATH,FJR,XXLB,FSZT,DQZT,BY3,BY4,BY5,BY6,BY7,FSSJ
+    from sys_user_message
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_user_message
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="springboot.oa.domain.user.SysUserMessageExample" >
+    delete from sys_user_message
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="springboot.oa.domain.user.SysUserMessage" >
+    insert into sys_user_message (ID, SJR, ZT, 
+      ZW, UPLOADPATH, FJR, 
+      XXLB, FSZT, DQZT, BY3, 
+      BY4, BY5, BY6, BY7, 
+      FSSJ)
+    values (#{id,jdbcType=INTEGER}, #{sjr,jdbcType=VARCHAR}, #{zt,jdbcType=VARCHAR}, 
+      #{zw,jdbcType=VARCHAR}, #{uploadpath,jdbcType=VARCHAR}, #{fjr,jdbcType=VARCHAR}, 
+      #{xxlb,jdbcType=VARCHAR}, #{fszt,jdbcType=VARCHAR}, #{dqzt,jdbcType=VARCHAR}, #{by3,jdbcType=VARCHAR}, 
+      #{by4,jdbcType=VARCHAR}, #{by5,jdbcType=VARCHAR}, #{by6,jdbcType=VARCHAR}, #{by7,jdbcType=VARCHAR}, 
+      #{fssj,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="springboot.oa.domain.user.SysUserMessage" >
+    insert into sys_user_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="sjr != null" >
+        SJR,
+      </if>
+      <if test="zt != null" >
+        ZT,
+      </if>
+      <if test="zw != null" >
+        ZW,
+      </if>
+      <if test="uploadpath != null" >
+        UPLOADPATH,
+      </if>
+      <if test="fjr != null" >
+        FJR,
+      </if>
+      <if test="xxlb != null" >
+        XXLB,
+      </if>
+      <if test="fszt != null" >
+        FSZT,
+      </if>
+      <if test="dqzt != null" >
+        DQZT,
+      </if>
+      <if test="by3 != null" >
+        BY3,
+      </if>
+      <if test="by4 != null" >
+        BY4,
+      </if>
+      <if test="by5 != null" >
+        BY5,
+      </if>
+      <if test="by6 != null" >
+        BY6,
+      </if>
+      <if test="by7 != null" >
+        BY7,
+      </if>
+      <if test="fssj != null" >
+        FSSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sjr != null" >
+        #{sjr,jdbcType=VARCHAR},
+      </if>
+      <if test="zt != null" >
+        #{zt,jdbcType=VARCHAR},
+      </if>
+      <if test="zw != null" >
+        #{zw,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadpath != null" >
+        #{uploadpath,jdbcType=VARCHAR},
+      </if>
+      <if test="fjr != null" >
+        #{fjr,jdbcType=VARCHAR},
+      </if>
+      <if test="xxlb != null" >
+        #{xxlb,jdbcType=VARCHAR},
+      </if>
+      <if test="fszt != null" >
+        #{fszt,jdbcType=VARCHAR},
+      </if>
+      <if test="dqzt != null" >
+        #{dqzt,jdbcType=VARCHAR},
+      </if>
+      <if test="by3 != null" >
+        #{by3,jdbcType=VARCHAR},
+      </if>
+      <if test="by4 != null" >
+        #{by4,jdbcType=VARCHAR},
+      </if>
+      <if test="by5 != null" >
+        #{by5,jdbcType=VARCHAR},
+      </if>
+      <if test="by6 != null" >
+        #{by6,jdbcType=VARCHAR},
+      </if>
+      <if test="by7 != null" >
+        #{by7,jdbcType=VARCHAR},
+      </if>
+      <if test="fssj != null" >
+        #{fssj,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="springboot.oa.domain.user.SysUserMessageExample" resultType="java.lang.Integer" >
+    select count(*) from sys_user_message
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sys_user_message
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.sjr != null" >
+        SJR = #{record.sjr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zt != null" >
+        ZT = #{record.zt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zw != null" >
+        ZW = #{record.zw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uploadpath != null" >
+        UPLOADPATH = #{record.uploadpath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fjr != null" >
+        FJR = #{record.fjr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xxlb != null" >
+        XXLB = #{record.xxlb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fszt != null" >
+        FSZT = #{record.fszt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dqzt != null" >
+        DQZT = #{record.dqzt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.by3 != null" >
+        BY3 = #{record.by3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.by4 != null" >
+        BY4 = #{record.by4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.by5 != null" >
+        BY5 = #{record.by5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.by6 != null" >
+        BY6 = #{record.by6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.by7 != null" >
+        BY7 = #{record.by7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fssj != null" >
+        FSSJ = #{record.fssj,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sys_user_message
+    set ID = #{record.id,jdbcType=INTEGER},
+      SJR = #{record.sjr,jdbcType=VARCHAR},
+      ZT = #{record.zt,jdbcType=VARCHAR},
+      ZW = #{record.zw,jdbcType=VARCHAR},
+      UPLOADPATH = #{record.uploadpath,jdbcType=VARCHAR},
+      FJR = #{record.fjr,jdbcType=VARCHAR},
+      XXLB = #{record.xxlb,jdbcType=VARCHAR},
+      FSZT = #{record.fszt,jdbcType=VARCHAR},
+      DQZT = #{record.dqzt,jdbcType=VARCHAR},
+      BY3 = #{record.by3,jdbcType=VARCHAR},
+      BY4 = #{record.by4,jdbcType=VARCHAR},
+      BY5 = #{record.by5,jdbcType=VARCHAR},
+      BY6 = #{record.by6,jdbcType=VARCHAR},
+      BY7 = #{record.by7,jdbcType=VARCHAR},
+      FSSJ = #{record.fssj,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="springboot.oa.domain.user.SysUserMessage" >
+    update sys_user_message
+    <set >
+      <if test="sjr != null" >
+        SJR = #{sjr,jdbcType=VARCHAR},
+      </if>
+      <if test="zt != null" >
+        ZT = #{zt,jdbcType=VARCHAR},
+      </if>
+      <if test="zw != null" >
+        ZW = #{zw,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadpath != null" >
+        UPLOADPATH = #{uploadpath,jdbcType=VARCHAR},
+      </if>
+      <if test="fjr != null" >
+        FJR = #{fjr,jdbcType=VARCHAR},
+      </if>
+      <if test="xxlb != null" >
+        XXLB = #{xxlb,jdbcType=VARCHAR},
+      </if>
+      <if test="fszt != null" >
+        FSZT = #{fszt,jdbcType=VARCHAR},
+      </if>
+      <if test="dqzt != null" >
+        DQZT = #{dqzt,jdbcType=VARCHAR},
+      </if>
+      <if test="by3 != null" >
+        BY3 = #{by3,jdbcType=VARCHAR},
+      </if>
+      <if test="by4 != null" >
+        BY4 = #{by4,jdbcType=VARCHAR},
+      </if>
+      <if test="by5 != null" >
+        BY5 = #{by5,jdbcType=VARCHAR},
+      </if>
+      <if test="by6 != null" >
+        BY6 = #{by6,jdbcType=VARCHAR},
+      </if>
+      <if test="by7 != null" >
+        BY7 = #{by7,jdbcType=VARCHAR},
+      </if>
+      <if test="fssj != null" >
+        FSSJ = #{fssj,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="springboot.oa.domain.user.SysUserMessage" >
+    update sys_user_message
+    set SJR = #{sjr,jdbcType=VARCHAR},
+      ZT = #{zt,jdbcType=VARCHAR},
+      ZW = #{zw,jdbcType=VARCHAR},
+      UPLOADPATH = #{uploadpath,jdbcType=VARCHAR},
+      FJR = #{fjr,jdbcType=VARCHAR},
+      XXLB = #{xxlb,jdbcType=VARCHAR},
+      FSZT = #{fszt,jdbcType=VARCHAR},
+      DQZT = #{dqzt,jdbcType=VARCHAR},
+      BY3 = #{by3,jdbcType=VARCHAR},
+      BY4 = #{by4,jdbcType=VARCHAR},
+      BY5 = #{by5,jdbcType=VARCHAR},
+      BY6 = #{by6,jdbcType=VARCHAR},
+      BY7 = #{by7,jdbcType=VARCHAR},
+      FSSJ = #{fssj,jdbcType=DATE}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

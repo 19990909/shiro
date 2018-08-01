@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="springboot.oa.dao.dict.SysDictMapper" >
+  <resultMap id="BaseResultMap" type="springboot.oa.domain.dict.SysDict" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="DICT_TYPE" property="dictType" jdbcType="VARCHAR" />
+    <result column="DICT_CODE" property="dictCode" jdbcType="VARCHAR" />
+    <result column="DICT_VALUE" property="dictValue" jdbcType="VARCHAR" />
+    <result column="DICT_STATUS" property="dictStatus" jdbcType="VARCHAR" />
+    <result column="DICT_CREATEUSER" property="dictCreateuser" jdbcType="VARCHAR" />
+    <result column="DICT_CODE_PID" property="dictCodePid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    <if test="fields == null" >
+      ID, DICT_TYPE, DICT_CODE, DICT_VALUE, DICT_STATUS, DICT_CREATEUSER, DICT_CODE_PID
+    </if>
+    <if test="fields != null" >
+      ${fields}
+    </if>
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="springboot.oa.domain.dict.SysDictExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_dict
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    ID,DICT_TYPE,DICT_CODE,DICT_VALUE,DICT_STATUS,DICT_CREATEUSER,DICT_CODE_PID
+    from sys_dict
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_dict
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="springboot.oa.domain.dict.SysDictExample" >
+    delete from sys_dict
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="springboot.oa.domain.dict.SysDict" >
+    insert into sys_dict (ID, DICT_TYPE, DICT_CODE, 
+      DICT_VALUE, DICT_STATUS, DICT_CREATEUSER, 
+      DICT_CODE_PID)
+    values (#{id,jdbcType=VARCHAR}, #{dictType,jdbcType=VARCHAR}, #{dictCode,jdbcType=VARCHAR}, 
+      #{dictValue,jdbcType=VARCHAR}, #{dictStatus,jdbcType=VARCHAR}, #{dictCreateuser,jdbcType=VARCHAR}, 
+      #{dictCodePid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="springboot.oa.domain.dict.SysDict" >
+    insert into sys_dict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="dictType != null" >
+        DICT_TYPE,
+      </if>
+      <if test="dictCode != null" >
+        DICT_CODE,
+      </if>
+      <if test="dictValue != null" >
+        DICT_VALUE,
+      </if>
+      <if test="dictStatus != null" >
+        DICT_STATUS,
+      </if>
+      <if test="dictCreateuser != null" >
+        DICT_CREATEUSER,
+      </if>
+      <if test="dictCodePid != null" >
+        DICT_CODE_PID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="dictType != null" >
+        #{dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCode != null" >
+        #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictValue != null" >
+        #{dictValue,jdbcType=VARCHAR},
+      </if>
+      <if test="dictStatus != null" >
+        #{dictStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCreateuser != null" >
+        #{dictCreateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCodePid != null" >
+        #{dictCodePid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="springboot.oa.domain.dict.SysDictExample" resultType="java.lang.Integer" >
+    select count(*) from sys_dict
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sys_dict
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dictType != null" >
+        DICT_TYPE = #{record.dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dictCode != null" >
+        DICT_CODE = #{record.dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dictValue != null" >
+        DICT_VALUE = #{record.dictValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dictStatus != null" >
+        DICT_STATUS = #{record.dictStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dictCreateuser != null" >
+        DICT_CREATEUSER = #{record.dictCreateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dictCodePid != null" >
+        DICT_CODE_PID = #{record.dictCodePid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sys_dict
+    set ID = #{record.id,jdbcType=VARCHAR},
+      DICT_TYPE = #{record.dictType,jdbcType=VARCHAR},
+      DICT_CODE = #{record.dictCode,jdbcType=VARCHAR},
+      DICT_VALUE = #{record.dictValue,jdbcType=VARCHAR},
+      DICT_STATUS = #{record.dictStatus,jdbcType=VARCHAR},
+      DICT_CREATEUSER = #{record.dictCreateuser,jdbcType=VARCHAR},
+      DICT_CODE_PID = #{record.dictCodePid,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="springboot.oa.domain.dict.SysDict" >
+    update sys_dict
+    <set >
+      <if test="dictType != null" >
+        DICT_TYPE = #{dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCode != null" >
+        DICT_CODE = #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictValue != null" >
+        DICT_VALUE = #{dictValue,jdbcType=VARCHAR},
+      </if>
+      <if test="dictStatus != null" >
+        DICT_STATUS = #{dictStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCreateuser != null" >
+        DICT_CREATEUSER = #{dictCreateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCodePid != null" >
+        DICT_CODE_PID = #{dictCodePid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="springboot.oa.domain.dict.SysDict" >
+    update sys_dict
+    set DICT_TYPE = #{dictType,jdbcType=VARCHAR},
+      DICT_CODE = #{dictCode,jdbcType=VARCHAR},
+      DICT_VALUE = #{dictValue,jdbcType=VARCHAR},
+      DICT_STATUS = #{dictStatus,jdbcType=VARCHAR},
+      DICT_CREATEUSER = #{dictCreateuser,jdbcType=VARCHAR},
+      DICT_CODE_PID = #{dictCodePid,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,190 @@
+body {
+    width: 100%;
+    height:calc(100vh - 18px);
+    font-family: 微软雅黑;
+    min-width: 1346px;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none !important;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.clear{
+    clear: both;
+}
+.container {
+    width: 82%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#header {
+    width: 100%;
+    height: 8em;
+    position: relative;
+}
+
+#header .logo_title {
+    width: 650px;
+    height: 75px;
+    margin-top: 40px;
+    background: url("../images/dl-logo.png") 0 0 no-repeat;
+    filter:alpha(opacity=0);
+    -moz-opacity:0;
+    -khtml-opacity:0;
+    opacity: 0;
+    position: absolute;
+    left: 800px;
+}
+
+#content {
+    width: 100%;
+    background: #0d61bf;
+    overflow:hidden ;
+    padding: 0 4%;
+    box-sizing: border-box;
+}
+
+#content #left_box {
+    float: left;
+    width: 50%;
+    height: 510px;
+    margin-top: 7%;
+    background: url("../images/dl2.png") no-repeat;
+    filter:alpha(opacity=0); /* IE */
+    -moz-opacity:0; /* 老版Mozilla */
+    -khtml-opacity:0; /* 老版Safari */
+    opacity: 0; /* 支持opacity的浏览器*/
+}
+
+#content #right_box {
+    float: right;
+    filter:alpha(opacity=10);
+    -moz-opacity:0.1;
+    -khtml-opacity:0.1;
+    opacity: 0.1;
+    width: 480px;
+    height: 420px;
+    margin-top: 5%;
+    background: url("../images/login_bg_03.png") no-repeat;
+    padding: 110px 30px 0px;
+    position: relative;
+    overflow: hidden;
+}
+
+#content #right_box p {
+    margin-bottom: 20px;
+    position: relative;
+}
+#content #right_box #passName,#passWord{
+    left: 500px;
+}
+#content #right_box p .form-control {
+    padding-left: 45px;
+    height: 50px;
+}
+#passName img, #passWord img {
+    width: 19px;
+    height: 19px;
+    position: absolute;
+    left: 15px;
+    top: 15px;
+}
+
+#setPass {
+    margin-top: 40px;
+}
+
+#setPass .checkbox {
+    margin: 0;
+}
+
+#setPass #forgot_password {
+    color: #ff8c57;
+}
+
+#btn_box .btn {
+    font-size: 18px;
+}
+
+#content .btn-primary {
+    height: 50px;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+#footer {
+    width: 100%;
+    height: 8em;
+    line-height: 120px;
+    text-align: center;
+}
+
+#footer p {
+    color: #666;
+    font-size: 18px;
+}
+
+
+/*!*动画*!*/
+/*.main{*/
+    /*height:20px;*/
+    /*position: absolute;*/
+    /*left:0;*/
+    /*right:0;*/
+    /*top:0;*/
+    /*bottom:0;*/
+    /*margin: auto;*/
+    /*display: none;*/
+/*}*/
+
+/*.loading{*/
+    /*width: 150px;*/
+    /*height: 15px;*/
+    /*margin: 0 auto;*/
+/*}*/
+/*.loading span{*/
+    /*display: inline-block;*/
+    /*width: 15px;*/
+    /*height: 100%;*/
+    /*margin-right: 5px;*/
+    /*background: lightgreen;*/
+    /*-webkit-transform-origin: right bottom;*/
+    /*-webkit-animation: load 1s ease infinite;*/
+/*}*/
+/*.loading span:last-child{*/
+    /*margin-right: 0px;*/
+/*}*/
+/*@-webkit-keyframes load{*/
+    /*0%{*/
+        /*opacity: 1;*/
+        /*-webkit-transform: scale(1);*/
+    /*}*/
+    /*100%{*/
+        /*opacity: 0;*/
+        /*-webkit-transform: rotate(90deg) scale(.3);*/
+    /*}*/
+/*}*/
+/*.loading span:nth-child(1){*/
+    /*-webkit-animation-delay:0.13s;*/
+/*}*/
+/*.loading span:nth-child(2){*/
+    /*-webkit-animation-delay:0.26s;*/
+/*}*/
+/*.loading span:nth-child(3){*/
+    /*-webkit-animation-delay:0.39s;*/
+/*}*/
+/*.loading span:nth-child(4){*/
+    /*-webkit-animation-delay:0.52s;*/
+/*}*/
+/*.loading span:nth-child(5){*/
+    /*-webkit-animation-delay:0.65s;*/
+/*}*/
+
+
