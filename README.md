@@ -1,5 +1,7 @@
 # springboot shiro的配置
+
 &emsp;&emsp;本项目下载下来如下结构：shiro的配置在下图这里：
+
 ![images](https://github.com/lingshufeng/images/blob/master/images/shiro%E9%A1%B9%E7%9B%AE%E6%A8%A1%E6%9D%BF2.png)
 &emsp;&emsp;除了添加上图的那部分以外，还需要引入一个shiro的依赖：
 ```
@@ -16,4 +18,4 @@
 &emsp;&emsp; 3、找到项目中的`resources`文件夹下的`application.properties`文件中，修改项目中的数据库连接即可。
 &emsp;&emsp; 4、启动后，账号密码分别为 admin   admin1
 ![images](https://github.com/lingshufeng/images/blob/master/images/shiro%E9%A1%B9%E7%9B%AE%E6%A8%A1%E6%9D%BF.png)
-&emsp;&emsp; 5、如有问题，可以到 `CSDN 凌大大博客` 给我留下消息。
+&emsp;&emsp; 5、如有问题，可以百度搜索 `CSDN 凌大大博客`,进入博客后，留下消息,我看到后会及时回复。
